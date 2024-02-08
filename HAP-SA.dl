@@ -1,0 +1,45 @@
+space(r1, 1, 1, 1).
+space(r2, 1, 1, 1).
+space(r3, 1, 1, 1).
+space(r4, 1, 1, 1).
+space(r5, 1, 1, 1).
+space(r6, 1, 1, 1).
+space(r7, 1, 1, 1).
+space(r8, 1, 1, 1).
+space(r9, 1, 1, 1).
+
+space(c1, 1, 1, 1).
+space(c2, 1, 1, 1).
+space(c3, 1, 1, 1).
+space(c4, 1, 1, 1).
+space(c5, 3, 3, 3).
+space(c6, 1, 1, 1).
+
+acc(c1, c2). acc(c2, c1).
+acc(c1, c5). acc(c5, c1).
+acc(c2, c3). acc(c3, c2).
+acc(c2, c4). acc(c4, c2).
+acc(c3, c6). acc(c6, c3).
+acc(c5, c6). acc(c6, c5).
+
+acc(c1, r6). acc(r6, c1).
+
+acc(c2, r1). acc(r1, c2).
+acc(c2, r2). acc(r2, c2).
+acc(c2, r3). acc(r3, c2).
+acc(c2, r4). acc(r4, c2).
+
+acc(c3, r4). acc(r4, c3).
+acc(c3, r5). acc(r5, c3).
+
+acc(c4, r9). acc(r9, c4).
+
+acc(c5, r4). acc(r4, c5).
+acc(c5, r7). acc(r7, c5).
+
+acc(c6, r8). acc(r8, c6).
+acc(c6, r9). acc(r9, c6).
+
+acc(r6, r7). acc(r7, r6).
+acc(r7, r8). acc(r8, r7).
+acc(r8, r9). acc(r9, r8).
