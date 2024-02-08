@@ -1,0 +1,70 @@
+fluents:
+  current_loc(L) requires space(L, _, _, _).
+  perception_level(P) requires #int(P).
+  definition_level(D) requires #int(D).
+  reaction_level(R) requires #int(R).
+	
+actions:
+  move(L) requires space(L, _, _, _).
+  increase_perception(X) requires #int(X).
+  increase_definition(X) requires #int(X).
+  increase_reaction(X) requires #int(X).
+
+always:
+  % ===== when to move =====
+  caused current_loc(L) after move(L).
+  caused -current_loc(L) after move(L1), current_loc(L), L<>L1.
+  executable move(L1) if acc(L1, L2), current_loc(L2), space(L1, P, R, D),
+    perception_level(P1), P1>=P,
+    reaction_level(R1), R1>=R,
+    definition_level(D1), D1>=D.
+	
+  % ===== tracking perception =====
+  caused perception_level(0) after move(L).
+  caused -perception_level(P) after move(L), perception_level(P).
+
+  caused perception_level(X) after increase_perception(X).
+  caused -perception_level(X) after increase_perception(X1),
+    perception_level(X), X1=X+1.
+  executable increase_perception(1) if perception_level(0).
+  executable increase_perception(2) if perception_level(1).
+  executable increase_perception(3) if perception_level(2).
+
+  % ===== tracking definition =====
+  caused definition_level(0) after move(L).
+  caused -definition_level(P) after move(L), definition_level(P).
+
+  caused definition_level(X) after increase_definition(X).
+  caused -definition_level(X) after increase_definition(X1),
+    definition_level(X), X1=X+1.
+  executable increase_definition(1) if definition_level(0).
+  executable increase_definition(2) if definition_level(1).
+  executable increase_definition(3) if definition_level(2).
+
+  % ===== tracking reaction =====
+  caused reaction_level(0) after move(L).
+  caused -reaction_level(P) after move(L), reaction_level(P).
+
+  caused reaction_level(X) after increase_reaction(X).
+  caused -reaction_level(X) after increase_reaction(X1),
+    reaction_level(X), X1=X+1.
+  executable increase_reaction(1) if reaction_level(0).
+  executable increase_reaction(2) if reaction_level(1).
+  executable increase_reaction(3) if reaction_level(2).
+
+  % ===== inertials =====
+  inertial current_loc(L).
+  inertial perception_level(P).
+  inertial definition_level(D).
+  inertial reaction_level(R).
+
+initially:
+  current_loc(c1).
+  perception_level(0).
+  definition_level(0).
+  reaction_level(0).
+	
+noConcurrency.
+
+goal:
+  current_loc(r9) ? (12)
