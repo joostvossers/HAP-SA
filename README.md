@@ -3,6 +3,8 @@ Umeå University, 2024.
 
 Joost Vossers <br>
 Andreas Brännström <br>
+Erik Borglund <br>
+Jonas Hansson <br>
 Juan Carlos Nieves
 
 The project consists of two files:
